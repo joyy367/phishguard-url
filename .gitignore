@@ -1,0 +1,41 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local SQLite database (resets on cloud restart anyway)
+reports/scan_history.db
+
+# Dataset (large file – do not commit)
+data/
+reports/full_test_set_results.csv
+reports/recommended_demo_cases.csv
+
+# Secrets and environment files
+.env
+*.env
+secrets.toml
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Build / dist
+dist/
+build/
+*.egg-info/

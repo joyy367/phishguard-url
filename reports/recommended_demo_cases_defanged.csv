@@ -1,0 +1,11 @@
+url,label,predicted_label,phish_probability
+hxxp://allegrolokalnie[.]pl-oferta1947202[.]cyou,1,1,0.999883684062407
+hxxps://dev[.]citoga[.]com/wp-content/plugins/wpforms-lite/vendor_prefixed/apimatic/core/src/Request/Parameters/index[.]php?r=bD1odHRwczovL3ZvbHVtZS1nNXA3Ymh4Zi1zdGF0aWMtb3JnLnMzL…,1,1,0.9998687100709256
+hxxps://bradesco-chatapp-empresa[.]site/login[.]php?hash=119565557768c435ea11ea51[.]36190476,1,1,0.9998668700206913
+hxxp://allegrolokalnie[.]pi-0021758372[.]rest,1,1,0.9998541255621298
+hxxp://allegrolokalnie[.]oferta-10212145[.]shop,1,1,0.9998539801723382
+hxxp://www[.]tinn[.]kommune[.]no/,0,0,4.6407963309215583e-05
+hxxp://www[.]parks[.]tas[.]gov[.]au/,0,0,4.825287743385798e-05
+hxxp://www[.]tmr[.]qld[.]gov[.]au/,0,0,5.717587212481935e-05
+hxxp://www[.]voss[.]kommune[.]no/,0,0,6.991802851944404e-05
+hxxp://www[.]po[.]opole[.]pl/,0,0,7.078811678979927e-05
