@@ -16,7 +16,7 @@ MODEL_PRESENT = (
 
 skip_no_model = pytest.mark.skipif(
     not MODEL_PRESENT,
-    reason="Model artifact not found – run scripts/train_models.py first",
+    reason="Model artifact not found – run notebooks/03_model_training.ipynb first",
 )
 
 

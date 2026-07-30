@@ -3,20 +3,24 @@ predictor.py
 ------------
 Loads the saved model artifacts (pkl files) and exposes predict_url().
 
-Model artifacts (saved by scripts/train_models.py):
-    models/best_model.pkl          - trained selected classifier
-    models/best_model_name.pkl     - string name of selected model
-    models/feature_names.pkl       - ordered list of 22 feature names
+Model artifacts (saved by notebooks/03_model_training.ipynb):
+    models/best_model.pkl             - trained selected classifier
+    models/best_model_name.pkl        - string name of selected model
+    models/feature_names.pkl          - ordered list of 22 feature names
     models/best_model_evaluation.json - evaluation metrics from test set
 """
 
 import json
 import os
 import pickle
+import warnings
 
 import pandas as pd
 
 from app.features import FEATURE_NAMES, extract_url_features, normalize_url
+
+# Silence sklearn feature names warning (model works correctly, this is cosmetic)
+warnings.filterwarnings('ignore', category=UserWarning, module='sklearn')
 
 # ---------------------------------------------------------------------------
 # Artifact paths  (matching your existing models/ folder structure)
@@ -43,7 +47,7 @@ def _load():
         if not os.path.exists(_MODEL_PKL):
             raise FileNotFoundError(
                 f"Model not found at '{_MODEL_PKL}'. "
-                "Run scripts/train_models.py first."
+                "Run notebook 03_model_training.ipynb first."
             )
         with open(_MODEL_PKL, "rb") as f:
             _model = pickle.load(f)
@@ -52,7 +56,7 @@ def _load():
         if not os.path.exists(_MODEL_NAME_PKL):
             raise FileNotFoundError(
                 f"Model name not found at '{_MODEL_NAME_PKL}'. "
-                "Run scripts/train_models.py again."
+                "Run notebooks/03_model_training.ipynb again."
             )
         with open(_MODEL_NAME_PKL, "rb") as f:
             _model_name = pickle.load(f)
@@ -61,21 +65,21 @@ def _load():
         if not os.path.exists(_FEATURES_PKL):
             raise FileNotFoundError(
                 f"Feature contract not found at '{_FEATURES_PKL}'. "
-                "Run scripts/train_models.py again."
+                "Run notebooks/03_model_training.ipynb again."
             )
         with open(_FEATURES_PKL, "rb") as f:
             stored_features = pickle.load(f)
         if list(stored_features) != FEATURE_NAMES:
             raise RuntimeError(
                 "Saved feature_names.pkl does not match the live FEATURE_NAMES "
-                "contract. Retrain the model with the current features.py."
+                "contract. Retrain the model by running notebooks/03_model_training.ipynb."
             )
 
         # --- best_model_evaluation.json ---
         if not os.path.exists(_EVAL_JSON):
             raise FileNotFoundError(
                 f"Evaluation metadata not found at '{_EVAL_JSON}'. "
-                "Run scripts/train_models.py again."
+                "Run notebooks/03_model_training.ipynb again."
             )
         with open(_EVAL_JSON) as f:
             _eval_metrics = json.load(f)

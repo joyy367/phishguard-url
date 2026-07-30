@@ -128,7 +128,10 @@ def generate_pdf(result: dict) -> bytes:
     model_name = result.get("model_name", "Unknown")
     url_str = result.get("url", "")
     coverage = result.get("coverage", "22/22")
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    # Convert to Singapore Time (UTC+8)
+    from datetime import timedelta
+    sgt_time = datetime.now(timezone.utc) + timedelta(hours=8)
+    timestamp = sgt_time.strftime("%Y-%m-%d %H:%M:%S SGT")
 
     verdict_color = _RED if label == "Phishing" else _GREEN
     risk_color = {"High": _RED, "Medium": _AMBER, "Low": _GREEN}.get(risk_level, _GREY_MID)

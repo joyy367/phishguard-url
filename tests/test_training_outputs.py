@@ -24,7 +24,7 @@ _artefacts_present = (
 
 skip_no_artefacts = pytest.mark.skipif(
     not _artefacts_present,
-    reason="Training artefacts not found – run scripts/train_models.py first",
+    reason="Training artefacts not found – run notebooks/03_model_training.ipynb first",
 )
 
 
@@ -105,10 +105,10 @@ class TestValidationComparison:
     def test_selected_model_has_highest_phish_f1(self):
         df = self._df()
         import pickle
-        from app.modeling import select_best_model
         with open(os.path.join(MODELS, "best_model_name.pkl"), "rb") as f:
             selected = pickle.load(f)
-        assert selected == select_best_model(df.to_dict(orient="records"))
+        best_row = df.loc[df["phish_f1"].idxmax(), "model_name"]
+        assert selected == best_row
 
     def test_grouped_split_metadata(self):
         with open(os.path.join(MODELS, "best_model_evaluation.json")) as f:
