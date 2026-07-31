@@ -1,0 +1,21 @@
+url,category,expected_result
+https://www.google.com,Search Engine,Legitimate
+https://github.com,Development Platform,Legitimate
+https://en.wikipedia.org/wiki/Main_Page,Encyclopedia,Legitimate
+https://www.amazon.com,E-commerce,Legitimate
+https://www.microsoft.com,Technology,Legitimate
+https://www.facebook.com,Social Media,Legitimate
+https://www.linkedin.com,Professional Network,Legitimate
+https://stackoverflow.com,Developer Community,Legitimate
+https://www.reddit.com,Social News,Legitimate
+https://www.youtube.com,Video Platform,Legitimate
+https://paypal-verify-account-security-update.com,Typosquatting,Phishing
+https://g00gle-login.com/verify,Typosquatting,Phishing
+https://secure-bankofamerica-verify.com/login,Banking Phish,Phishing
+https://login.security.update.verify.apple.com.verify-account.net,Long Subdomain,Phishing
+https://amaz0n-prime-renewal.com,Typosquatting,Phishing
+https://microsft-support-team.net,Typosquatting,Phishing
+https://paypal-account-locked-verify-now.com,Urgency Tactic,Phishing
+https://facebook-security-alert.com,Impersonation,Phishing
+https://linkedin-job-offer-confirmation.net,Social Engineering,Phishing
+https://netflix-billing-update-required.com,Urgency Tactic,Phishing

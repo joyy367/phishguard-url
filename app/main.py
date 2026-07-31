@@ -741,32 +741,8 @@ def page_scanner():
     if scan_mode == "Single URL":
         st.markdown('<div class="scanner-section-label">URL to analyse</div>', unsafe_allow_html=True)
         
-        # Demo URLs dropdown for easy testing
-        demo_urls = {
-            "-- Select a demo URL --": "",
-            "✓ Legitimate: Google": "https://www.google.com",
-            "✓ Legitimate: GitHub": "https://github.com",
-            "✓ Legitimate: Wikipedia": "https://en.wikipedia.org/wiki/Main_Page",
-            "⚠ Suspicious: Many dashes": "https://paypal-verify-account-security-update.com",
-            "⚠ Suspicious: Typosquatting": "https://g00gle-login.com/verify",
-            "🚫 Blocked: Private IP (security)": "http://192.168.1.1/login",
-        }
-        
-        col_demo, col_clear = st.columns([3, 1])
-        with col_demo:
-            selected_demo = st.selectbox(
-                "Quick select demo URL for testing",
-                options=list(demo_urls.keys()),
-                key="demo_url_select",
-                label_visibility="collapsed",
-            )
-        
-        # Pre-fill input if demo URL selected
-        default_url = demo_urls.get(selected_demo, "")
-        
         url_input = st.text_input(
             "URL to scan",
-            value=default_url,
             placeholder="https://example.com/login  or  example.com",
             help="Enter a full URL or hostname. Private/local addresses are rejected.",
             label_visibility="collapsed",

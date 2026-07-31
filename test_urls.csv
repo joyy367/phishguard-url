@@ -1,0 +1,11 @@
+url,description
+https://www.google.com,Legitimate - Google search engine
+https://github.com,Legitimate - GitHub platform
+https://en.wikipedia.org/wiki/Main_Page,Legitimate - Wikipedia
+https://www.amazon.com,Legitimate - Amazon shopping
+https://www.microsoft.com,Legitimate - Microsoft official
+https://paypal-verify-account-security-update.com,Suspicious - Many dashes typosquatting
+https://g00gle-login.com/verify,Suspicious - Typosquatting (0 instead of o)
+https://secure-bankofamerica-verify.com/login,Suspicious - Banking phish pattern
+https://login.security.update.verify.apple.com.verify-account.net,Suspicious - Long subdomain chain
+https://www.netflix.com,Legitimate - Netflix streaming
