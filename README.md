@@ -190,12 +190,24 @@ Ready-to-use test files are included in the `test_data/` folder:
 
 ### Available Test Files:
 
-1. **`test_data/demo_urls.txt`** - Quick 5-URL demo
-2. **`test_data/test_urls.txt`** - Standard 10-URL test  
+1. **`test_data/demo_urls.txt`** - Quick 5-URL demo (30 seconds)
+2. **`test_data/test_urls.txt`** - Standard 10-URL test
 3. **`test_data/test_urls.csv`** - 10 URLs with descriptions
 4. **`test_data/batch_test_comprehensive.csv`** - Full 20-URL validation
 
-See [`test_data/README.md`](test_data/README.md) for detailed descriptions.
+### File Formats:
+
+**Text files (.txt):** One URL per line
+```
+https://example.com
+https://test.com
+```
+
+**CSV files (.csv):** First column = URLs (other columns ignored)
+```csv
+url,description,category
+https://example.com,Description,Category
+```
 
 ### How to Use:
 
@@ -278,8 +290,7 @@ PHISHGUARD_URL/
 │   ├── demo_urls.txt                 # Quick 5-URL demo
 │   ├── test_urls.txt                 # Standard 10-URL test
 │   ├── test_urls.csv                 # 10 URLs with descriptions
-│   ├── batch_test_comprehensive.csv  # Full 20-URL validation
-│   └── README.md                     # Test files documentation
+│   └── batch_test_comprehensive.csv  # Full 20-URL validation
 ├── requirements.txt                  # Production dependencies
 ├── requirements-dev.txt              # Development dependencies
 ├── runtime.txt                       # Python version for deployment
