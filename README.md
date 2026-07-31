@@ -186,39 +186,23 @@ python -m pytest -q
 
 ## 📁 Batch Scanning Test Files
 
-Ready-to-use test files are included for batch scanning demos:
+Ready-to-use test files are included in the `test_data/` folder:
 
-### 1. `demo_urls.txt` - Quick Demo (5 URLs)
-```
-https://www.google.com
-https://paypal-verify-account-security-update.com
-https://github.com
-https://g00gle-login.com/verify
-https://www.wikipedia.org
-```
-**Use case:** 30-second quick demo
+### Available Test Files:
 
-### 2. `test_urls.txt` - Standard Test (10 URLs)
-- 5 legitimate URLs
-- 5 suspicious URLs
-**Use case:** Standard demonstration
+1. **`test_data/demo_urls.txt`** - Quick 5-URL demo
+2. **`test_data/test_urls.txt`** - Standard 10-URL test  
+3. **`test_data/test_urls.csv`** - 10 URLs with descriptions
+4. **`test_data/batch_test_comprehensive.csv`** - Full 20-URL validation
 
-### 3. `test_urls.csv` - Test with Descriptions (10 URLs)
-Columns: `url`, `description`
-**Use case:** Batch scan with context
-
-### 4. `batch_test_comprehensive.csv` - Full Validation (20 URLs)
-Columns: `url`, `category`, `expected_result`
-- 10 legitimate URLs (varied categories)
-- 10 phishing URLs (different attack patterns)
-**Use case:** Comprehensive model validation
+See [`test_data/README.md`](test_data/README.md) for detailed descriptions.
 
 ### How to Use:
 
 1. Open app: `streamlit run app/main.py`
 2. Go to **URL Scanner** → **Batch Scan**
 3. Select **Upload File**
-4. Choose any test file
+4. Choose any file from `test_data/` folder
 5. Click **Scan URLs**
 6. View results and download CSV
 
@@ -290,10 +274,12 @@ PHISHGUARD_URL/
 │   └── 03_model_training.ipynb
 ├── reports/                          # Generated reports and charts
 ├── tests/                            # Unit tests
-├── demo_urls.txt                     # Quick demo file
-├── test_urls.txt                     # Standard test file
-├── test_urls.csv                     # Test with descriptions
-├── batch_test_comprehensive.csv      # Full validation file
+├── test_data/                        # Batch scanning test files
+│   ├── demo_urls.txt                 # Quick 5-URL demo
+│   ├── test_urls.txt                 # Standard 10-URL test
+│   ├── test_urls.csv                 # 10 URLs with descriptions
+│   ├── batch_test_comprehensive.csv  # Full 20-URL validation
+│   └── README.md                     # Test files documentation
 ├── requirements.txt                  # Production dependencies
 ├── requirements-dev.txt              # Development dependencies
 ├── runtime.txt                       # Python version for deployment
