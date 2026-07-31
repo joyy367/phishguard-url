@@ -186,37 +186,64 @@ python -m pytest -q
 
 ## 📁 Batch Scanning Test Files
 
-Ready-to-use test files are included in the `test_data/` folder:
+Ready-to-use test files are included in the `test_data/` folder for demonstrations and validation:
 
 ### Available Test Files:
 
-1. **`test_data/demo_urls.txt`** - Quick 5-URL demo (30 seconds)
-2. **`test_data/test_urls.txt`** - Standard 10-URL test
-3. **`test_data/test_urls.csv`** - 10 URLs with descriptions
-4. **`test_data/batch_test_comprehensive.csv`** - Full 20-URL validation
+| File | URLs | Use Case | Time |
+|------|------|----------|------|
+| `demo_urls.txt` | 5 | Quick demo - alternating legitimate/phishing | 30 sec |
+| `test_urls.txt` | 10 | Standard test - 5 legitimate, 5 phishing | 1 min |
+| `test_urls.csv` | 10 | Same as above with descriptions | 1 min |
+| `batch_test_comprehensive.csv` | 20 | Full validation - 10 legitimate, 10 phishing | 2 min |
+
+### What's Included:
+
+**Legitimate URLs (expected LOW phishing scores):**
+- google.com, github.com, wikipedia.org, amazon.com, microsoft.com
+- facebook.com, linkedin.com, stackoverflow.com, reddit.com, youtube.com
+
+**Phishing URLs (expected HIGH phishing scores):**
+- Typosquatting (g00gle, amaz0n, microsft)
+- Many dashes (paypal-verify-account-security-update)
+- Long subdomain chains (login.security.update.verify...)
+- Urgency tactics (account-locked-verify-now)
+- Banking impersonation (secure-bankofamerica-verify)
 
 ### File Formats:
 
 **Text files (.txt):** One URL per line
-```
-https://example.com
-https://test.com
+```txt
+https://www.google.com
+https://github.com
+https://paypal-verify-account-security-update.com
 ```
 
-**CSV files (.csv):** First column = URLs (other columns ignored)
+**CSV files (.csv):** First column must be URLs, other columns are optional and ignored
 ```csv
-url,description,category
-https://example.com,Description,Category
+url,description,category,expected_result
+https://www.google.com,Search engine,Legitimate,Pass
+https://paypal-verify.com,Phishing site,Phishing,Fail
 ```
 
-### How to Use:
+### How to Use in App:
 
-1. Open app: `streamlit run app/main.py`
-2. Go to **URL Scanner** → **Batch Scan**
+1. Run: `streamlit run app/main.py`
+2. Navigate to **URL Scanner** → **Batch Scan**
 3. Select **Upload File**
 4. Choose any file from `test_data/` folder
-5. Click **Scan URLs**
-6. View results and download CSV
+5. Click **Scan URLs** button
+6. View results table with predictions
+7. Download results as CSV with timestamps
+
+### For Your Report:
+
+After batch scanning, you can:
+- Calculate accuracy: `(Correct Predictions / Total URLs) × 100%`
+- Identify false positives/negatives
+- Compare with `expected_result` column in CSV files
+- Include processing time and performance metrics
+- Take screenshots of results table and summary cards
 
 ---
 
