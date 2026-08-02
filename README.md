@@ -2,23 +2,29 @@
 
 **URL-only phishing detection web application** for EATC Assignment 2 (2026).
 
-This app extracts 22 lexical and structural features from URL text alone. It does **not** visit destinations, download page content, or execute JavaScript. A *Legitimate* prediction is not a safety guarantee.
+This application uses machine learning to classify URLs as legitimate or phishing based on 22 lexical and structural features extracted from URL text alone. The system does not visit destination websites, download page content, or execute JavaScript, providing a safe and fast detection method.
 
 ---
 
-## 🚀 Features
+## Overview
 
-- **Single URL Scanner** - Analyze individual URLs with detailed results
-- **Batch Scanner** - Upload .txt or .csv files to scan multiple URLs
-- **Real-time Analysis** - 22 features extracted instantly
-- **PDF Reports** - Download detailed assessment reports
-- **Analytics Dashboard** - Model performance metrics and charts
-- **Scan History** - Track all scans with local storage
-- **Dark Theme UI** - Professional, modern interface
+PhishGuard URL is an AI-powered cybersecurity application that addresses the growing threat of phishing attacks by analyzing URL patterns without requiring web requests. The system employs a Histogram Gradient Boosting classifier trained on approximately 11,000 URLs to achieve high accuracy in real-time phishing detection.
 
 ---
 
-## 📋 Requirements
+## Features
+
+- **Single URL Scanner** - Analyze individual URLs with detailed results and confidence scores
+- **Batch Scanner** - Upload .txt or .csv files to scan multiple URLs simultaneously
+- **Real-time Analysis** - Extract and process 22 features instantly without web requests
+- **PDF Reports** - Generate downloadable assessment reports with feature vectors
+- **Analytics Dashboard** - View model performance metrics, ROC curves, and feature importance
+- **Scan History** - Track all scans with session-isolated SQLite storage
+- **Security Features** - Private IP blocking and URL normalization
+
+---
+
+## System Requirements
 
 **Python Version:** 3.11 (required for deployment compatibility)
 
@@ -30,7 +36,7 @@ All required packages are listed in:
 
 ---
 
-## 🛠️ Local Setup
+## Installation and Setup
 
 ### 1. Create Virtual Environment
 
@@ -65,7 +71,7 @@ The dataset should have columns: `url` and `label` (0 = legitimate, 1 = phishing
 
 ---
 
-## 📊 Training the Model
+## Model Training Pipeline
 
 ### Run the Notebooks in Order:
 
@@ -143,7 +149,7 @@ reports/fig_test_curves.png
 
 ---
 
-## ▶️ Running the Application
+## Running the Application
 
 ### Start the App:
 
@@ -166,7 +172,7 @@ app/
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Run All Tests:
 
@@ -184,7 +190,7 @@ python -m pytest -q
 
 ---
 
-## 📁 Batch Scanning Test Files
+## Batch Scanning Test Files
 
 Ready-to-use test files are included in the `test_data/` folder for demonstrations and validation:
 
@@ -226,30 +232,29 @@ https://www.google.com,Search engine,Legitimate,Pass
 https://paypal-verify.com,Phishing site,Phishing,Fail
 ```
 
-### How to Use in App:
+### Usage in Application:
 
 1. Run: `streamlit run app/main.py`
-2. Navigate to **URL Scanner** → **Batch Scan**
-3. Select **Upload File**
-4. Choose any file from `test_data/` folder
-5. Click **Scan URLs** button
-6. View results table with predictions
-7. Download results as CSV with timestamps
+2. Navigate to URL Scanner, then Batch Scan tab
+3. Select Upload File option
+4. Choose any file from test_data/ folder
+5. Click Scan URLs button
+6. View results table with predictions and confidence scores
+7. Download results as CSV with Singapore timestamps
 
-### For Your Report:
+### Testing and Validation:
 
-After batch scanning, you can:
-- Calculate accuracy: `(Correct Predictions / Total URLs) × 100%`
-- Identify false positives/negatives
-- Compare with `expected_result` column in CSV files
-- Include processing time and performance metrics
-- Take screenshots of results table and summary cards
+After batch scanning, the following metrics can be calculated:
+- Accuracy: (Correct Predictions / Total URLs) × 100%
+- False positive and false negative identification
+- Comparison with expected results in CSV files
+- Processing time and performance benchmarks
 
 ---
 
-## 🎯 Demo URLs for Manual Testing
+## Demo URLs for Manual Testing
 
-### ✅ Legitimate URLs:
+### Legitimate URLs:
 ```
 https://www.google.com
 https://github.com
@@ -258,7 +263,7 @@ https://www.amazon.com
 https://www.microsoft.com
 ```
 
-### ⚠️ Suspicious URLs:
+### Suspicious URLs:
 ```
 https://paypal-verify-account-security-update.com
 https://g00gle-login.com/verify
@@ -266,30 +271,31 @@ https://secure-bankofamerica-verify.com/login
 https://login.security.update.verify.apple.com.verify-account.net
 ```
 
-### 🚫 Blocked (Security Feature):
+### Blocked URLs (Security Feature Demonstration):
 ```
 http://192.168.1.1/login
 ```
-*Expected: Rejected - demonstrates private IP blocking*
+Note: Private IP addresses are rejected to prevent local network scanning.
 
 ---
 
-## 📈 Model Performance
+## Model Performance
 
-**Best Model:** Histogram Gradient Boosting Classifier
+**Selected Model:** Histogram Gradient Boosting Classifier
 
-**Test Set Performance** (Domain-Unseen 15%):
+**Test Set Performance** (Domain-Unseen 15% Split):
 - Accuracy: ~96.89%
-- Phishing F1: ~89.48%
+- Phishing F1 Score: ~89.48%
 - Phishing Recall: ~92.21%
+- Phishing Precision: ~86.91%
 - ROC-AUC: ~0.9918
 - PR-AUC: ~0.9639
 
-*Note: Exact values depend on your training run*
+Note: Values are approximate and may vary slightly depending on training run and random seed.
 
 ---
 
-## 🔧 Project Structure
+## Project Structure
 
 ```
 PHISHGUARD_URL/
@@ -326,7 +332,7 @@ PHISHGUARD_URL/
 
 ---
 
-## 🌐 Deployment (Streamlit Cloud)
+## Deployment (Streamlit Cloud)
 
 ### Prerequisites:
 1. GitHub repository with your code
@@ -361,7 +367,7 @@ git push origin main
 
 ---
 
-## 🔒 Security Features
+## Security Features
 
 - **Private IP Blocking** - Rejects 192.168.x.x, 10.x.x.x, 127.x.x.x
 - **URL Normalization** - Removes credentials and sensitive data
@@ -371,43 +377,14 @@ git push origin main
 
 ---
 
-## 📝 For Your Report
+## Known Issues
 
-### Test Results Format:
-
-| URL | Expected | Actual | Phishing Score | Risk Level |
-|-----|----------|--------|----------------|------------|
-| google.com | Legitimate | Legitimate | 1.59% | Low |
-| paypal-verify... | Phishing | Phishing | 88.23% | High |
-
-### Screenshots to Include:
-
-1. Single URL scan results
-2. Batch scan upload and results
-3. Analytics dashboard
-4. PDF report download
-5. Feature importance chart
-6. Model comparison table
-
-### Key Metrics to Report:
-
-- Model accuracy on test set
-- Phishing F1 score
-- False positive rate
-- False negative rate
-- Batch scan processing time
-- Feature importance rankings
+- **Cosmetic Issue:** "undefined" text may appear near the gauge chart visualization. This is a display-only issue and does not affect functionality or prediction accuracy.
+- **Console Warnings:** Feature name mismatch warnings from scikit-learn are suppressed in the code. The model functions correctly as feature order is validated on load.
 
 ---
 
-## 🐛 Known Issues
-
-- **"undefined" text** may appear near gauge chart (cosmetic only, doesn't affect functionality)
-- **Warnings** about feature names (suppressed in code, model works correctly)
-
----
-
-## 📚 Feature Glossary
+## Feature Glossary
 
 The model uses 22 URL-derived features:
 
@@ -436,40 +413,30 @@ The model uses 22 URL-derived features:
 
 ---
 
-## 📧 Contact & Credits
+## Credits and References
 
-**EATC Assignment 2 - 2026**
+**Course:** Emerging AI Trends in Cybersecurity (EATC)  
+**Assignment:** Assignment 2 (2026)  
+**Institution:** Ngee Ann Polytechnic, School of Infocomm Technology  
+**Programme:** Diploma in Cybersecurity & Digital Forensics
 
-**Dataset:** URL-Phish v2 (DOI: 10.17632/65z9twcx3r.2)
+**Dataset Source:**  
+URL-Phish v2 Dataset  
+DOI: 10.17632/65z9twcx3r.2  
+Mendeley Data
 
-**Technologies:**
+**Technology Stack:**
 - Python 3.11
-- scikit-learn 1.3.2
-- Streamlit 1.40.0
-- Plotly 5.18.0
-- ReportLab 4.1.0
+- scikit-learn 1.3.2 (Machine Learning)
+- Streamlit 1.40.0 (Web Application Framework)
+- Plotly 5.18.0 (Interactive Visualizations)
+- ReportLab 4.1.0 (PDF Report Generation)
+- SQLite (History Storage)
 
 ---
 
-## 📄 License
+## License
 
-This project is for educational purposes (EATC Assignment 2).
-
----
-
-## ✅ Quick Start Checklist
-
-- [ ] Python 3.11 installed
-- [ ] Virtual environment created
-- [ ] Dependencies installed (`requirements-dev.txt`)
-- [ ] Dataset downloaded and placed in `data/Dataset.csv`
-- [ ] Notebooks run in order (01 → 02 → 03)
-- [ ] Model trained successfully
-- [ ] Tests passing (`pytest`)
-- [ ] App runs locally (`streamlit run app/main.py`)
-- [ ] Batch test files work
-- [ ] Ready for deployment!
+This project is developed for educational purposes as part of EATC Assignment 2.
 
 ---
-
-**Last Updated:** January 2026
